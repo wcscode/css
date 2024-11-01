@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        :root{
+            --bg-color:#e0e0e0;
+            --size-label: 150px;
+            --size-checkbox: calc(var(--size-label) - 15px);
+            --size-checkbox-inernal: calc(var(--size-label) - 60px);
+            --light-primary:  rgba(255, 255, 255, .7);
+            --shadow-primary:  rgba(0, 0, 0, .07);
+            --shadow-secondary: rgba(0, 0, 0, .2);
+            --light-color: #f1f1f1;
+            --dark-color: #d8d8d8;
+            --light-position: 135deg;
+            --icon-size: 3rem;
+
+            --hover-light:  #ecdf1f;
+
+            --active-light: #8ae44d;
+            --active-light-2: #9ee66f;
+            --active-light-3: #b1e78d;
+        }
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            background-color: var(--bg-color);
+        }
+      
+        .label
+        {
+            display: grid;
+            place-items: center;
+            position: relative;
+            cursor: pointer;
+            border-radius: 50%;
+            text-align: center;            
+        }
+        .label > input {
+            appearance: none;
+            width: var(--size-label);
+            border-radius: 50%;
+            aspect-ratio: 1;            
+            box-shadow: inset 0px 0px 12px var(--shadow-secondary);          
+            display: grid;
+            place-items: center;            
+            cursor: inherit;  
+            transition: background-color 1s ease;           
+        }     
+       
+        .label > input::after,
+        .label > input::before
+        {
+            position: absolute;
+            content: "";            
+            aspect-ratio: 1;
+            border-radius: 50%;   
+                
+        }
+
+        .label > input::before
+        {
+            width: var(--size-checkbox);
+            background: linear-gradient(var(--light-position), var(--light-color), var(--dark-color));
+            box-shadow: 2px 2px 3px var(--shadow-secondary);            
+        }
+
+        .label > input::after
+        {            
+            width: var(--size-checkbox-inernal);            
+            /*background: linear-gradient(var(--light-position),  var(--shadow-primary), var(--light-primary)); */             
+            background: linear-gradient(var(--light-position),  var(--dark-color), var(--light-color));
+        }
+
+        .label > i {
+            position: absolute;
+            font-size: var(--icon-size);
+            color:var(--shadow-primary);              
+            text-shadow: .5px .5px .5px var(--light-primary), -.5px -.5px .5px var(--shadow-secondary);
+            pointer-events: none;
+                   
+        }
+        
+        
+        
+        .label > input:hover{
+            background-color: var(--hover-light);
+            box-shadow: 5px;    
+                                           
+        }
+
+        .label > input + i{
+            transition: color 1s ease; 
+        }
+
+        .label > input:hover + i
+        {
+            color: var(--hover-light);                       
+        }
+
+        .label > input:checked{
+            background-color:  var(--active-light);
+            transition: background-color 1s ease; 
+                               
+        }
+        .label > input:checked::before{            
+            box-shadow: 0 0 20px  var(--active-light), 0 0 40px var(--active-light-2), 0 0 60px var(--active-light-3);                      
+        }
+
+        
+        .label > input:checked + i
+        {
+            color:  var(--active-light);
+            text-shadow: 0 0 2px  var(--active-light), 0 0 4px  var(--active-light-2), 0 0 6px var(--active-light-3);
+            /*animation: init-spin 5s ease-in forwards, spin 4s linear infinite; */
+            animation: spin 4s linear infinite;
+            animation-delay: 0s, 4s;
+            transition: color 1s ease;
+          
+        }
+
+        @keyframes init-spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(0deg);               
+            }
+            
+            from {
+                transform: rotate(360deg);
+            }
+
+        }
+    </style>
+</head>
+<body> 
+    <label class="label">           
+        <input type="checkbox">
+        <i class="fa-solid fa-gear"></i>    
+    </label>
+</body>
+</html>
